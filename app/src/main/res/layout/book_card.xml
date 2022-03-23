@@ -95,6 +95,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:id="@+id/edit"
+                    app:icon="@drawable/ic_baseline_edit_24"
                     android:layout_height="wrap_content"
                     android:text="Edit"
                     style="?attr/borderlessButtonStyle"
@@ -102,6 +103,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_baseline_block_24"
                     android:id="@+id/block"
                     android:text="Block"
                     style="?attr/borderlessButtonStyle"
@@ -109,6 +111,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_baseline_delete_24"
                     android:id="@+id/delete"
                     android:text="Delete"
                     style="?attr/borderlessButtonStyle"
