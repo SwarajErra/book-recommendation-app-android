@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class LogoActivity extends AppCompatActivity {
-    private Button button;
+    private Button signUpButton,logInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,23 +18,23 @@ public class LogoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logos);
 
-        button = (Button) findViewById(R.id.loginBtn);
+        logInButton = (Button) findViewById(R.id.loginBtn);
+        signUpButton=findViewById(R.id.signupBtn);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLoginActivity();
                 Intent intent = new Intent(context, LoginActivity.class);
                 startActivity(intent);
-
             }
         });
-
-
-    }
-
-
-    private void openLoginActivity() {
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SignupActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
