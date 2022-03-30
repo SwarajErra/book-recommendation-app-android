@@ -2,20 +2,38 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.book_recommendation_app_android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="Book Recommendation"
+        android:icon="@drawable/logo"
+        android:label="BLURB"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookrecommendationappandroid">
-
-
+        <activity
+            android:name=".profile"
+            android:exported="false" />
+        <activity
+            android:name=".AboutUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Update_Book"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Book"
+            android:exported="false" />
+        <activity
+            android:name=".GoogleBooksAPI"
+            android:exported="false" />
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home"
             android:exported="false" />
         <activity
             android:name=".LogoActivity"

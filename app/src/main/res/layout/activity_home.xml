@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
+<!--    <include layout="@layout/title" />-->
 <!--    <LinearLayout-->
 <!--        android:id="@+id/linearLayout"-->
 <!--        android:layout_width="match_parent"-->
@@ -17,11 +17,10 @@
 
 <!--        <ImageView-->
 <!--            android:id="@+id/imageView3"-->
-<!--            android:layout_width="183dp"-->
+<!--            android:layout_width="83dp"-->
 <!--            android:layout_height="75dp"-->
 <!--            android:layout_gravity="start"-->
-<!--            android:contentDescription="@string/titlabar_logo"-->
-<!--            app:srcCompat="@drawable/titlebar_logo" />-->
+<!--            app:srcCompat="@drawable/logo_sign_up" />-->
 
 
 <!--    </LinearLayout>-->
@@ -63,6 +62,133 @@
                 app:icon="@drawable/search_icon" />
         </LinearLayout>
 
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:id="@+id/apiBooks"
+                android:layout_height="wrap_content"
+                android:text="API Books"
+                style="@android:style/Widget.Button"
+                android:textColor="#ffffff"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addBook"
+                android:text="Add Book"
+                app:cornerRadius="20dp"
+                style="@android:style/Widget.Button"
+                android:textColor="#ffffff"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sort"
+                android:text="Sort"
+                style="@android:style/Widget.Button"
+                android:textColor="#ffffff"
+                />
+
+
+        </TableRow>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal">-->
+<!--        -->
+<!--        <Button-->
+<!--            android:id="@+id/apiBooks"-->
+<!--            style="@android:style/Widget.Button"-->
+<!--            android:layout_width="500px"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:layout_marginRight="8dp"-->
+<!--            android:background="@drawable/button_blue"-->
+<!--            android:text="API Books"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <Button-->
+<!--            android:id="@+id/addBook"-->
+<!--            style="@android:style/Widget.Button"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:background="@drawable/button_blue"-->
+<!--            android:text="Add Book"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <Button-->
+<!--            android:id="@+id/sort"-->
+<!--            style="@android:style/Widget.Button"-->
+<!--            android:layout_width="500px"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:layout_marginRight="8dp"-->
+<!--            android:background="@drawable/button_blue"-->
+<!--            android:text="Sort"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold" />-->
+<!--    </LinearLayout><LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal">-->
+<!--        -->
+<!--        <Button-->
+<!--            android:id="@+id/apiBooks"-->
+<!--            style="@android:style/Widget.Button"-->
+<!--            android:layout_width="500px"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:layout_marginRight="8dp"-->
+<!--            android:background="@drawable/button_blue"-->
+<!--            android:text="API Books"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <Button-->
+<!--            android:id="@+id/addBook"-->
+<!--            style="@android:style/Widget.Button"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:background="@drawable/button_blue"-->
+<!--            android:text="Add Book"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <Button-->
+<!--            android:id="@+id/sort"-->
+<!--            style="@android:style/Widget.Button"-->
+<!--            android:layout_width="500px"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:layout_marginRight="8dp"-->
+<!--            android:background="@drawable/button_blue"-->
+<!--            android:text="Sort"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textStyle="bold" />-->
+<!--    </LinearLayout>-->
         <ScrollView
 
             android:layout_width="fill_parent"

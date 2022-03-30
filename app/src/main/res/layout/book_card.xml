@@ -98,6 +98,7 @@
                     app:icon="@drawable/ic_baseline_edit_24"
                     android:layout_height="wrap_content"
                     android:text="Edit"
+                    android:visibility="gone"
                     style="?attr/borderlessButtonStyle"
                     />
                 <com.google.android.material.button.MaterialButton
@@ -106,6 +107,16 @@
                     app:icon="@drawable/ic_baseline_block_24"
                     android:id="@+id/block"
                     android:text="Block"
+                    android:visibility="gone"
+                    style="?attr/borderlessButtonStyle"
+                    />
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_baseline_block_24"
+                    android:id="@+id/unblock"
+                    android:text="Unblock"
+                    android:visibility="gone"
                     style="?attr/borderlessButtonStyle"
                     />
                 <com.google.android.material.button.MaterialButton
@@ -114,8 +125,18 @@
                     app:icon="@drawable/ic_baseline_delete_24"
                     android:id="@+id/delete"
                     android:text="Delete"
+                    android:visibility="gone"
                     style="?attr/borderlessButtonStyle"
                     />
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_baseline_share_24"
+                    android:id="@+id/share"
+                    android:text="Share"
+                    style="?attr/borderlessButtonStyle"
+                    />
+
             </TableRow>
 
         </LinearLayout>
