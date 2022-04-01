@@ -13,6 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -30,6 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     EditText inputEmail,inputpassword;
+    TextView forgotPassword;
     Button logIn;
     ImageView logInWithGoogle;
     String emailPattern= "[a-zA-Z0-9._%+-]+@[A-Za-z.-]+\\.+[a-z]+";
@@ -49,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         inputpassword=findViewById(R.id.password);
         logIn=findViewById(R.id.logIn);
         logInWithGoogle=findViewById(R.id.logInWithGoogle);
-
+        forgotPassword = findViewById(R.id.forgotPassword);
         GoogleSignInOptions googleSignIn = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleClient = GoogleSignIn.getClient(this,googleSignIn);
 
@@ -71,6 +73,17 @@ public class LoginActivity extends AppCompatActivity {
                 checkAuthourization();
             }
         });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(LoginActivity.this,passwordReset.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+
+
 
     }
 
@@ -101,17 +114,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    //    private void signOut() {
-//        mGoogleSignInClient.signOut()
-//                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        Toast.makeText(Main2Activity.this,"Successfully signed out",Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(Main2Activity.this, MainActivity.class));
-//                        finish();
-//                    }
-//                });
-//    }
     private void checkAuthourization() {
         String email=inputEmail.getText().toString();
         String password=inputpassword.getText().toString();

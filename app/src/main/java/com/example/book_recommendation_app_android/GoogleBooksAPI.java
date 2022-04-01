@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -169,7 +170,9 @@ public class GoogleBooksAPI extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.profile:
-                System.out.println(item.getItemId());
+                Intent intentProfile= new Intent(GoogleBooksAPI.this,profile.class);
+                intentProfile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intentProfile);
                 return true;
             case R.id.home:
                 Intent intentHome= new Intent(GoogleBooksAPI.this,home.class);
@@ -186,6 +189,7 @@ public class GoogleBooksAPI extends AppCompatActivity {
                 Intent intent= new Intent(GoogleBooksAPI.this,LogoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                Toast.makeText(GoogleBooksAPI.this,"Successfully signed out", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

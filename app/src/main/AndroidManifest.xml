@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookrecommendationappandroid">
         <activity
+            android:name=".passwordReset"
+            android:exported="false" />
+        <activity
+            android:name=".bookDesc"
+            android:exported="false" />
+        <activity
             android:name=".profile"
             android:exported="false" />
         <activity

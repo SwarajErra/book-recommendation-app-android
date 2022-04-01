@@ -76,7 +76,7 @@ public class Add_Book extends AppCompatActivity {
                 0,
                 currentUser.getEmail().toString(),
                 bookPublishedBy.getText().toString(),
-                null,
+                new ArrayList<>(),
                 false
         );
 
@@ -104,7 +104,9 @@ public class Add_Book extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.profile:
-                System.out.println(item.getItemId());
+                Intent intentProfile= new Intent(Add_Book.this,profile.class);
+                intentProfile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intentProfile);
                 return true;
             case R.id.home:
                 Intent intentHome= new Intent(Add_Book.this,home.class);
@@ -121,6 +123,7 @@ public class Add_Book extends AppCompatActivity {
                 Intent intent= new Intent(Add_Book.this,LogoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                Toast.makeText(Add_Book.this,"Successfully signed out", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

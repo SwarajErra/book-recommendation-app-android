@@ -38,15 +38,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 class Rating {
-    public double bookRating;
+    public float bookRating;
     public String bookReview;
     public String reviewerName;
     public String reviewerId;
 
     public Rating(
-            double bookRating,
+            float bookRating,
             String bookReview,
             String reviewerName,
             String reviewerId
@@ -122,20 +123,6 @@ public class home extends AppCompatActivity {
             currentUserEmail =  mCurrentUser.getEmail();
         }
 
-        FirebaseAuth.getInstance().addAuthStateListener(new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-//                    Intent intent= new Intent(home.this,LoginActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent);
-                }
-            }
-        });
-
-//        getSupportActionBar().hide();
-//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         System.out.println(currentUserEmail);
         sortButton=findViewById(R.id.sort);
         sortButton.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +156,9 @@ public class home extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.profile:
-                System.out.println(item.getItemId());
+                Intent intentProfile= new Intent(home.this,profile.class);
+                intentProfile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intentProfile);
                 return true;
             case R.id.home:
                 Intent intentHome= new Intent(home.this,home.class);
@@ -186,6 +175,7 @@ public class home extends AppCompatActivity {
                 Intent intent= new Intent(home.this,LogoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                Toast.makeText(home.this,"Successfully signed out", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -197,6 +187,16 @@ public class home extends AppCompatActivity {
          mCurrentUser = mAuth.getInstance().getCurrentUser();
 
     }
+    private Float setOverallRating(ArrayList<Rating> ratings){
+        float sum = 0,avg=0;
+        for (int i = 0; i < ratings.size();  i++) {
+            Map<String, Object> temp = (Map<String, Object>) ratings.get(i);
+            sum = sum + ((Double) temp.get("bookRating")).floatValue();
+        }
+        avg = sum/ratings.size();
+        return avg;
+    }
+
 
     void buildCard(ArrayList<Book> newArray){
         LinearLayout mainLayout = (LinearLayout) findViewById(R.id.homeCardLayout);
@@ -204,6 +204,7 @@ public class home extends AppCompatActivity {
         LayoutInflater li =  (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         for (int i = 0; i < newArray.size();  i++){
+            ArrayList<Rating> ratings= new ArrayList<>();
             View tempView = li.inflate(R.layout.book_card, null);
 
             TextView title = (TextView) tempView.findViewById(R.id.title);
@@ -220,7 +221,8 @@ public class home extends AppCompatActivity {
             title.setText(Html.fromHtml(newArray.get(i).bookTitle));
             authour.setText(Html.fromHtml( "By : " + newArray.get(i).bookAuthor));
             rating.setText(Html.fromHtml("Rating :"));
-            ratingBar.setRating((float) newArray.get(i).bookOverallRating);
+            ratings = (ArrayList<Rating>)  newArray.get(i).bookRatingsAndReviews;
+            ratingBar.setRating(setOverallRating(ratings));
             String uri = "@drawable/img" +  newArray.get(i).bookImageId;
             int imageResource = getResources().getIdentifier(uri, null, getPackageName());
             image.setImageResource(imageResource);
@@ -319,6 +321,15 @@ public class home extends AppCompatActivity {
                 }
             });
 
+            tempView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(home.this, bookDesc.class);
+                    intent.putExtra("docId",newArray.get(finalI).bookId );
+                    startActivity(intent);
+                }
+            });
+
             if(currentUserEmail.equalsIgnoreCase(newArray.get(finalI).bookAddedBy)) {
                 edit.setVisibility(View.VISIBLE);
                 delete.setVisibility(View.VISIBLE);
@@ -334,10 +345,14 @@ public class home extends AppCompatActivity {
                 }
                 edit.setVisibility(View.VISIBLE);
                 delete.setVisibility(View.VISIBLE);
+                mainLayout.addView(tempView);
+            }else{
+                if(!newArray.get(finalI).isBlocked){
+                    mainLayout.addView(tempView);
+                }
+
             }
 
-
-            mainLayout.addView(tempView);
         }
 
     }
