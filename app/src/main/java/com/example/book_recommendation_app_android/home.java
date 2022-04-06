@@ -8,7 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -381,7 +383,7 @@ public class home extends AppCompatActivity {
     public List<Book> findUsingLoop(String search, List<Book> list) {
         List<Book> matches = new ArrayList<Book>();
         for(int i = 0; i < list.size(); i++) {
-            if (list.get(i).bookTitle.toLowerCase(Locale.ROOT).contains(search.toLowerCase(Locale.ROOT))
+            if (list.get(i).bookTitle.toLowerCase().startsWith(search.toLowerCase())
                      ) {
 
                 matches.add(new Book(
@@ -408,6 +410,30 @@ public class home extends AppCompatActivity {
         searchButton = (Button) findViewById(R.id.searchButton);
         EditText view = (EditText) findViewById(R.id.filledTextField);
         apiBooksButton = (Button) findViewById(R.id.apiBooks);
+        view.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if (!view.getText().toString().matches("")) {
+                    ArrayList<Book> newArray = (ArrayList<Book>) findUsingLoop(String.valueOf(view.getText()), arrayBooks);
+
+                    buildCard(newArray);
+                }else{
+                    buildCard(arrayBooks);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
