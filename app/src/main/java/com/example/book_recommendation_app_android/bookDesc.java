@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,6 +79,42 @@ public class bookDesc extends AppCompatActivity {
         getBookData();
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.blurb_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.profile:
+                Intent intentProfile= new Intent(bookDesc.this,profile.class);
+                intentProfile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intentProfile);
+                return true;
+            case R.id.home:
+                Intent intentHome= new Intent(bookDesc.this,home.class);
+                intentHome.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intentHome);
+                return true;
+            case R.id.aboutUs:
+                Intent intentAboutUs= new Intent(bookDesc.this,AboutUsActivity.class);
+                intentAboutUs.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intentAboutUs);
+                return true;
+            case R.id.signOut:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent= new Intent(bookDesc.this,LogoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                Toast.makeText(bookDesc.this,"Successfully signed out", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void submmitRating() {
 
         Rating newRating = new Rating(
