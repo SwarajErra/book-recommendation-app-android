@@ -383,7 +383,7 @@ public class home extends AppCompatActivity {
     public List<Book> findUsingLoop(String search, List<Book> list) {
         List<Book> matches = new ArrayList<Book>();
         for(int i = 0; i < list.size(); i++) {
-            if (list.get(i).bookTitle.toLowerCase().startsWith(search.toLowerCase())
+            if (list.get(i).bookTitle.toLowerCase().startsWith(search.toLowerCase()) || list.get(i).bookTitle.toLowerCase().contains(search.toLowerCase())
                      ) {
 
                 matches.add(new Book(
